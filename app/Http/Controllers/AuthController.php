@@ -14,11 +14,11 @@ class AuthController extends Controller
 {
     //
 
-    public function showLogin()
+    public function showLogin($parameters = [])
     {
         if(Auth::user())
             return to_route('app');
-        return Inertia::render('Auth/login');
+        return Inertia::render('Auth/login', $parameters);
     }
 
     public function showRegister()
@@ -52,6 +52,8 @@ class AuthController extends Controller
 
         if($attempt)
             return to_route('app');
+        else
+            return $this->showLogin(['attempt' => $attempt]);
     }
 
     public function handleRegister()
