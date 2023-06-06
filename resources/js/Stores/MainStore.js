@@ -5,7 +5,7 @@ export const useAppStore = defineStore('appStore' ,{
     // state
     state: () => {
         return {
-            typeofproject: "laravel"
+            // variavbles
         }
     },
 
