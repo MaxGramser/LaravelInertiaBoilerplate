@@ -5,14 +5,10 @@
 
     <Link href="/auth/register" class="text-sm">Do you want to create an acount?</Link>
 
-    <label class="mb-1 mt-8 block">Email</label>
-    <input v-model="form.email" class="form-input rounded w-full" placeholder="Email">
-    <div v-if="form.errors.email" class="text-red-500">{{ form.errors.email }}</div>
+    <textinput v-model="form.email" :error="form.errors.email">Email</textinput>
     <div v-if="!$page.props.attempt" class="text-red-500">{{ $page.props.attempt === false ? 'Credentials do not match our records...' : '' }}</div>
 
-    <label class="mb-1 mt-8 block">Password</label>
-    <input v-model="form.password" class="form-input rounded w-full" type="password">
-    <div v-if="form.errors.password" class="text-red-500">{{ form.errors.password }}</div>
+    <textinput v-model="form.password" type="password" :error="form.errors.password">Password</textinput>
     <Link href="/auth/forgot" class="text-sm text-gray-200">forgot password...</Link>
 
     <div class="mt-8 flex items-center">
@@ -27,6 +23,7 @@
 
 <script setup>
     import {useForm} from "@inertiajs/inertia-vue3";
+    import Textinput from "../../components/textinput.vue";
 
     const form = useForm({
         email: null,

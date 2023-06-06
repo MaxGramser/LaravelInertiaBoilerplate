@@ -3,13 +3,8 @@
 
     <h2 class="text-3xl">Reset password</h2>
 
-    <label class="mb-1 mt-8 block">New Password</label>
-    <input v-model="form.password" type="password" class="form-input rounded w-full">
-    <div v-if="form.errors.password" class="text-red-500">{{ form.errors.password }}</div>
-
-    <label class="mb-1 mt-8 block">Comfirm Password</label>
-    <input v-model="form.password_confirmation" type="password" class="form-input rounded w-full">
-    <div v-if="form.errors.password_confirmation" class="text-red-500">{{ form.errors.password_confirmation }}</div>
+    <textinput v-model="form.password" type="password" :error="form.errors.password">New password</textinput>
+    <textinput v-model="form.password_confirmation" type="password" :error="form.errors.password_confirmation">Confirm new password</textinput>
 
     <button :disabled="form.processing" @click="form.post('/auth/reset')" class="disabled:opacity-50 bg-white block mt-8 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
         Reset Password
@@ -18,6 +13,7 @@
 
 <script setup>
     import {useForm} from "@inertiajs/inertia-vue3";
+    import Textinput from "../../components/textinput.vue";
 
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');

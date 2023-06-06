@@ -12,8 +12,6 @@ use Inertia\Inertia;
 
 class AuthController extends Controller
 {
-    //
-
     public function showLogin($parameters = [])
     {
         if(Auth::user())
@@ -61,15 +59,13 @@ class AuthController extends Controller
         $validated = request()->validate([
             'name' => ['required'],
             'email' => ['email', 'required', 'unique:users'],
-            'password' => ['required', 'confirmed'],
-            'studio_name' => ['required']
+            'password' => ['required', 'confirmed', 'min:8'],
         ]);
 
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => bcrypt($validated['password']),
-            'studio_name' => $validated['studio_name'],
         ]);
 
         Auth::login($user);
