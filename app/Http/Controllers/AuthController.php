@@ -26,9 +26,9 @@ class AuthController extends Controller
         return Inertia::render('Auth/register');
     }
 
-    public function showForgot()
+    public function showForgot(array $parameters = [])
     {
-        return Inertia::render('Auth/forgot');
+        return Inertia::render('Auth/forgot', $parameters);
     }
 
     public function showReset()
@@ -96,15 +96,20 @@ class AuthController extends Controller
             }
         );
 
-        return to_route('login');
+        return to_route('login', [
+            'status' => $status
+        ]);
     }
 
     public function handleForgot()
     {
         $attributes = request()->validate(['email' => 'required|email']);
         $status = Password::sendResetLink(['email' => $attributes['email']]);
+
         if($status === Password::RESET_LINK_SENT){
             return to_route('auth.forgot.success');
+        } else {
+            return $this->showForgot(['status' => $status]);
         }
     }
 
