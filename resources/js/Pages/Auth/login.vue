@@ -15,7 +15,7 @@
     <label class="mb-2 mt-8 block">Remember me</label>
     <input v-model="form.remember" class="form-checkbox" type="checkbox">
 
-    <button :disabled="form.processing" @click="form.post('/auth/login')" class="bg-white block mt-8 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+    <button :disabled="form.processing" @click="form.post('/auth/login')" class="disabled:opacity-50 bg-white block mt-8 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
         Login
     </button>
 </template>

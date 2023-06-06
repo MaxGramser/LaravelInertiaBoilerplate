@@ -60,12 +60,14 @@ class AuthController extends Controller
             'name' => ['required'],
             'email' => ['email', 'required', 'unique:users'],
             'password' => ['required', 'confirmed'],
+            'studio_name' => ['required']
         ]);
 
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => bcrypt($validated['password']),
+            'studio_name' => $validated['studio_name'],
         ]);
 
         Auth::login($user);

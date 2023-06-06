@@ -1,5 +1,5 @@
 <template>
-    <Head title="Login"></Head>
+    <Head title="Reset Password"></Head>
 
     <h2 class="mb-8">Reset password</h2>
 
@@ -11,7 +11,7 @@
     <input v-model="form.password_confirmation" type="password" class="form-input rounded w-full">
     <div v-if="form.errors.password_confirmation" class="text-red-500">{{ form.errors.password_confirmation }}</div>
 
-    <button :disabled="form.processing" @click="form.post('/auth/reset')" class="bg-white block mt-8 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+    <button :disabled="form.processing" @click="form.post('/auth/reset')" class="disabled:opacity-50 bg-white block mt-8 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
         Reset Password
     </button>
 </template>
